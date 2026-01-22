@@ -41,6 +41,8 @@
 .section-title::after {
   content: "";
   display: block;
+  left: 0;
+  bottom: 0;
   width: 80px;
   height: 5px;
   margin: 10px auto 0;
@@ -67,25 +69,59 @@ header .navbar {
   margin: 0 auto;
   padding: 0 20px;
 }
+.navbar .nav-logo {
+  display: flex;
+  align-items: center;
+}
 .navbar .nav-logo .logo-text {
   color: var(--white-color);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
+  animation: move 1.5s ease-in-out infinite alternate;
 }
+.navbar .nav-logo span {
+  font-size: 50px;
+  color: var(--secondary-color);
+  animation: move 1.5s ease-in-out infinite alternate;
+}
+@keyframes move {
+  from {
+    transform: translateY(-5);
+  }
+  to {
+    transform: translateY(5px);
+  }
+}
+
 .navbar .nav-menu {
   display: flex;
   gap: 10px;
 }
 .navbar .nav-menu .nav-link {
+  position: relative;
   padding: 10px 18px;
   border-radius: var(--border-radius-m);
   font-size: var(--font-size-m);
   color: var(--white-color);
   transition: 0.3s ease-in-out;
 }
-.navbar .nav-menu .nav-link:hover {
+.navbar .nav-menu .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 5px;
+  margin: 10px auto 0;
   background-color: var(--secondary-color);
-  color: var(--primary-color);
+  border-radius: var(--border-radius-s);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.navbar .nav-menu .nav-link:hover::after {
+  transform: scaleX(1);
 }
 .navbar .fas {
   display: none;
@@ -172,7 +208,7 @@ header .navbar {
 .about-section .about-details .section-title {
   padding: 0;
 }
-.about-section .about-details .text {
+.about-section .about-details #text {
   line-height: 30px;
   margin: 50px 0 30px;
   text-align: center;
@@ -430,6 +466,7 @@ header .navbar {
 
   .navbar .fas {
     display: block;
+    color: var(--white-color);
   }
 
   .navbar #menu-close-button {
@@ -437,7 +474,6 @@ header .navbar {
     top: 30px;
     right: 30px;
   }
-
   .navbar #menu-open-button {
     color: var(--white-color);
   }
@@ -446,13 +482,13 @@ header .navbar {
     position: fixed;
     left: -300px;
     top: 0;
-    width: 300px;
+    width: 250px;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 100px;
-    background-color: var(--white-color);
+    background-color: rgba(0, 0, 0, 0.5);
     transition: left 0.2s ease-in-out;
   }
 
@@ -461,10 +497,12 @@ header .navbar {
   }
 
   .navbar .nav-menu .nav-link {
-    display: block;
     margin: 17px;
-    color: var(--dark-color);
+    color: var(--white-color);
     font-size: var(--font-size-1);
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
   }
 
   /** Mobile Hero Section */

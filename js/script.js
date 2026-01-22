@@ -15,6 +15,19 @@ navLinks.forEach((link) => {
   link.addEventListener("click", () => menuOpenButton.click());
 });
 
+// About text animation
+const text =
+  "At Coffee House in Berndorf, Germany, we pride ourselves on being a go-to destination for coffee lovers and conversation seekers alike. We're dedicated to providing an exceptional coffee experience in a cozy and inviting atmosphere, where guests can relax, unwind, and enjoy their time in comfort.";
+const p = document.getElementById("text");
+let i = 0;
+
+setInterval(() => {
+  if (i < text.length) {
+    p.innerHTML += text[i];
+    i++;
+  }
+}, 50);
+
 // Swiper Testimonials Section
 
 const swiper = new Swiper(".slider-wrapper", {
